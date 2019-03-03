@@ -4,19 +4,42 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.jimbolix.shield</groupId>
     <artifactId>security-demo</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${aegis-security-version}</version>
     <packaging>jar</packaging>
     <name>security-demo</name>
     <description>Demo project for Spring Boot</description>
-
     <properties>
         <java.version>1.8</java.version>
     </properties>
-
+    <parent>
+        <groupId>com.jimbolix.security</groupId>
+        <artifactId>aegis-security</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../../aegis-security</relativePath>
+    </parent>
     <dependencies>
+        <dependency>
+            <groupId>com.jimbolix.shield</groupId>
+            <artifactId>security-core</artifactId>
+            <version>${aegis-security-version}</version>
+        </dependency>
     </dependencies>
-
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.0.1.RELEASE</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <finalName>aegis-demo</finalName>
     </build>
 
 </project>

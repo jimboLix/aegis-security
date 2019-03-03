@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.jimbolix.shield</groupId>
     <artifactId>security-app</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${aegis-security-version}</version>
     <packaging>jar</packaging>
     <name>security-app</name>
     <description>Demo project for Spring Boot</description>
@@ -12,11 +12,13 @@
     <properties>
         <java.version>1.8</java.version>
     </properties>
-
+    <parent>
+        <groupId>com.jimbolix.security</groupId>
+        <artifactId>aegis-security</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../../aegis-security</relativePath>
+    </parent>
     <dependencies>
     </dependencies>
-
-    <build>
-    </build>
 
 </project>
