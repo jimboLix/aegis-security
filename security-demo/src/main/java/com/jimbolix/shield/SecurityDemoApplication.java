@@ -1,4 +1,4 @@
-package com.jimbolix.shield.securitydemo;
+package com.jimbolix.shield;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

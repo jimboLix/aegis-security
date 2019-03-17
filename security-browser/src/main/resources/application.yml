@@ -1,5 +1,5 @@
 server:
-  port: 8082
+  port: 8083
 
 spring:
   datasource:
@@ -10,8 +10,3 @@ spring:
     name: security-demo
   session:
     store-type: none
-shield:
-  security:
-    browser:
-#      loginPage: /newLogin.html
-      loginType: REDIRECT

@@ -1,4 +1,4 @@
-package com.jimbolix.shield.securitycore;
+package com.jimbolix.shield;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

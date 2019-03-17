@@ -1,4 +1,4 @@
-package com.jimbolix.shield.securitybrowser;
+package com.jimbolix.shield;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SecurityBrowserApplicationTests {
+public class SecurityDemoApplicationTests {
 
     @Test
     public void contextLoads() {

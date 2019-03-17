@@ -4,13 +4,14 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.jimbolix.security</groupId>
     <artifactId>aegis-security</artifactId>
-    <version>${aegis-security-version}</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>aegis-security</name>
     <packaging>pom</packaging>
 
     <properties>
         <java.version>1.8</java.version>
         <aegis-security-version>0.0.1-SNAPSHOT</aegis-security-version>
+        <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
     </properties>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -33,16 +34,16 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Greenwich.RELEASE</version>
+                <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
     <modules>
+        <module>security-core</module>
         <module>security-app</module>
         <module>security-browser</module>
-        <module>security-core</module>
         <module>security-demo</module>
     </modules>
     <build>

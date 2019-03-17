@@ -16,7 +16,6 @@
         <groupId>com.jimbolix.security</groupId>
         <artifactId>aegis-security</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../../aegis-security</relativePath>
     </parent>
     <dependencies>
         <dependency>
