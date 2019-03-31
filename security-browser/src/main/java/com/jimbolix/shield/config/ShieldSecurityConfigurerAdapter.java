@@ -1,6 +1,6 @@
 package com.jimbolix.shield.config;
 
-import com.jimbolix.shield.core.properties.BrowserConfigProperties;
+import com.jimbolix.shield.core.filter.ValidateCodeFilter;
 import com.jimbolix.shield.core.properties.ShieldSecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.stereotype.Repository;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.annotation.Resource;
 
@@ -46,7 +46,10 @@ public class ShieldSecurityConfigurerAdapter extends WebSecurityConfigurerAdapte
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin()//配置登陆验证基于form表单
+        ValidateCodeFilter validateCodeFilter = new ValidateCodeFilter();
+        validateCodeFilter.setAuthenticationFailureHandler(authenticationFailureHandler);
+        validateCodeFilter.setShieldSecurityProperties(shieldSecurityProperties);
+        http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class).formLogin()//配置登陆验证基于form表单
                 .loginPage("/authentication/reuire")//这个是用来配置自定义登陆页面的位置的
                 .loginProcessingUrl("/authentication/form")//配置登陆请求的地址
                 .failureHandler(authenticationFailureHandler).successHandler(authenticationSuccessHandler)

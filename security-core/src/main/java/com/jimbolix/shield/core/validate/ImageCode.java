@@ -28,4 +28,8 @@ public class ImageCode {
         this.code = code;
         this.expireTime = LocalDateTime.now().plusSeconds(expireIn);
     }
+
+    public boolean isExpired(){
+        return LocalDateTime.now().isAfter(expireTime);
+    }
 }

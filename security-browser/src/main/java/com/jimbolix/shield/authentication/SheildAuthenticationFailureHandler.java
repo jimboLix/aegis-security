@@ -1,13 +1,12 @@
 package com.jimbolix.shield.authentication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jimbolix.shield.brower.support.SimpleResponse;
 import com.jimbolix.shield.core.properties.ShieldSecurityProperties;
 import com.jimbolix.shield.core.support.LoginType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
@@ -27,7 +26,7 @@ public class SheildAuthenticationFailureHandler extends SimpleUrlAuthenticationF
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         if(LoginType.JSON.equals(shieldSecurityProperties.getBrowser().getLoginType())){
             response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write(objectMapper.writeValueAsString(exception));
+            response.getWriter().write(objectMapper.writeValueAsString(new SimpleResponse(exception.getMessage())));
         }else{
             super.onAuthenticationFailure(request, response, exception);
         }

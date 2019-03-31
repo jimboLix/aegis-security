@@ -14,4 +14,12 @@ shield:
   security:
     browser:
 #      loginPage: /newLogin.html
-      loginType: REDIRECT
+      loginType: JSON
+    validateCode:
+      imageCodeProperties:
+        width: 200
+        height: 100
+        length: 6
+        urls:
+          - /user/*
+
