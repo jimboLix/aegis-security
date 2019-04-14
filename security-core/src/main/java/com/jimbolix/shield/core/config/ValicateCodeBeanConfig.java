@@ -1,8 +1,7 @@
 package com.jimbolix.shield.core.config;
 
 import com.jimbolix.shield.core.properties.ShieldSecurityProperties;
-import com.jimbolix.shield.core.validate.DefaultValidateImageCodeGenerator;
-import com.jimbolix.shield.core.validate.ValidateImageCodeGenerator;
+import com.jimbolix.shield.core.validate.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -14,11 +13,23 @@ public class ValicateCodeBeanConfig {
     @Autowired
     private ShieldSecurityProperties shieldSecurityProperties;
 
-    @Bean
-    @ConditionalOnMissingBean(ValidateImageCodeGenerator.class)
-    public ValidateImageCodeGenerator validateImageCodeGenerator(){
+    @Bean(name = "imageCodeGenerator")
+    @ConditionalOnMissingBean(name = "imageCodeGenerator")
+    public ValidateCodeGenerator validateImageCodeGenerator(){
         DefaultValidateImageCodeGenerator validateImageCodeGenerator = new DefaultValidateImageCodeGenerator();
         validateImageCodeGenerator.setShieldSecurityProperties(shieldSecurityProperties);
         return validateImageCodeGenerator;
+    }
+    @Bean(name = "smsCodeGenerator")
+    @ConditionalOnMissingBean(name = "smsCodeGenerator")
+    public ValidateCodeGenerator smsValidateCodeGenerator(){
+        DefaultValidateSmsCodeGenerator defaultValidateSmsCodeGenerator = new DefaultValidateSmsCodeGenerator();
+        defaultValidateSmsCodeGenerator.setShieldSecurityProperties(shieldSecurityProperties);
+        return defaultValidateSmsCodeGenerator;
+    }
+    @Bean
+    @ConditionalOnMissingBean(SmsCodeSender.class)
+    public SmsCodeSender smsCodeSender(){
+        return new DefaultSmsCodeSender();
     }
 }

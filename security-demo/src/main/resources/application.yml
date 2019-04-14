@@ -22,4 +22,7 @@ shield:
         length: 6
         urls:
           - /user/*
+      smsCodeProperties:
+        length: 7
+
 

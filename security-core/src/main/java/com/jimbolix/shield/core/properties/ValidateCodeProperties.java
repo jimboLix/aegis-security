@@ -8,5 +8,7 @@ import lombok.Data;
 @Data
 public class ValidateCodeProperties {
 
-    private ImageCodeProperties imageCodeProperties;
+    private ImageCodeProperties imageCodeProperties = new ImageCodeProperties();
+
+    private CodeProperties smsCodeProperties = new CodeProperties();
 }

@@ -54,7 +54,7 @@ public class ShieldSecurityConfigurerAdapter extends WebSecurityConfigurerAdapte
                 .loginProcessingUrl("/authentication/form")//配置登陆请求的地址
                 .failureHandler(authenticationFailureHandler).successHandler(authenticationSuccessHandler)
                 .and()
-                .authorizeRequests().antMatchers("/login.html","/authentication/reuire",shieldSecurityProperties.getBrowser().getLoginPage(),"/image/code")
+                .authorizeRequests().antMatchers("/login.html","/authentication/reuire",shieldSecurityProperties.getBrowser().getLoginPage(),"/code/*")
                 .permitAll()//配置哪些请求不需要登陆
                 .anyRequest().authenticated().and().csrf().disable();
 //                .httpBasic();//配置基于http的验证

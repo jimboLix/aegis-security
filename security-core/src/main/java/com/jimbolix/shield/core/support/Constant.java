@@ -5,4 +5,5 @@ package com.jimbolix.shield.core.support;
  */
 public class Constant {
     public static final String IMAGE_CODE_SESSION_KEY = "IMAGE_CODE_SESSION_KEY";
+
 }

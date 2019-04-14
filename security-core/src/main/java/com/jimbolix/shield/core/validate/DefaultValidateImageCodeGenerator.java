@@ -6,11 +6,11 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
-public class DefaultValidateImageCodeGenerator implements ValidateImageCodeGenerator {
+public class DefaultValidateImageCodeGenerator implements ValidateCodeGenerator {
 
     private ShieldSecurityProperties shieldSecurityProperties;
     @Override
-    public ImageCode createImageCode() {
+    public ImageCode createCode() {
         int width = shieldSecurityProperties.getValidateCode().getImageCodeProperties().getWidth();
         int height = shieldSecurityProperties.getValidateCode().getImageCodeProperties().getHeight();
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);

@@ -21,7 +21,7 @@
             <td>图形验证码</td>
             <td>
                 <input name="code" type="text">
-                <img src="/image/code">
+                <img src="/code/image">
             </td>
         </tr>
         <tr>
@@ -30,7 +30,28 @@
             </td>
         </tr>
     </table>
-
+    <table>
+        <tr>
+            <td>用户名</td>
+            <td><input type="text" name="username"></td>
+        </tr>
+        <tr>
+            <td>密码</td>
+            <td><input type="password" name="password"></td>
+        </tr>
+        <tr>
+            <td>输入验证码</td>
+            <td>
+                <input name="code" type="text">
+                <a href="/code/sms?mobile=12345656">获取验证码</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="登陆">
+            </td>
+        </tr>
+    </table>
 </form>
 </body>
 </html>

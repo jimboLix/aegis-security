@@ -1,16 +1,17 @@
 package com.jimbolix.shield.securitydemo;
 
 import com.jimbolix.shield.core.validate.ImageCode;
-import com.jimbolix.shield.core.validate.ValidateImageCodeGenerator;
+import com.jimbolix.shield.core.validate.ValidateCodeGenerator;
 import org.springframework.stereotype.Component;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
-public class NewValidateCodeGenerator implements ValidateImageCodeGenerator {
+//@Component(value = "validateImageCodeGenerator")
+public class NewValidateCodeGenerator implements ValidateCodeGenerator {
     @Override
-    public ImageCode createImageCode() {
+    public ImageCode createCode() {
         BufferedImage image = new BufferedImage(64, 32, BufferedImage.TYPE_INT_RGB);
 
         Graphics g = image.getGraphics();

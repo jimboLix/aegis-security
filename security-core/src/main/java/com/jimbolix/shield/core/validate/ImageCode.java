@@ -3,19 +3,14 @@ package com.jimbolix.shield.core.validate;
 import lombok.Data;
 
 import java.awt.image.BufferedImage;
-import java.time.LocalDateTime;
 
 /**
  * 图形验证码实体类
  */
 @Data
-public class ImageCode {
+public class ImageCode extends ValidateCode{
 
     private BufferedImage image;
-
-    private String code;
-
-    private LocalDateTime expireTime;
 
     /**
      *
@@ -24,12 +19,7 @@ public class ImageCode {
      * @param expireIn 超时时间数
      */
     public ImageCode(BufferedImage image, String code, int expireIn) {
+        super(code,expireIn);
         this.image = image;
-        this.code = code;
-        this.expireTime = LocalDateTime.now().plusSeconds(expireIn);
-    }
-
-    public boolean isExpired(){
-        return LocalDateTime.now().isAfter(expireTime);
     }
 }
