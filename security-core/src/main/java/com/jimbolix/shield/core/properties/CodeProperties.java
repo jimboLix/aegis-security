@@ -2,6 +2,7 @@ package com.jimbolix.shield.core.properties;
 
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -18,5 +19,5 @@ public class CodeProperties {
      * 需要验证码的请求
      *
      */
-    private List<String> urls;
+    private List<String> urls = new ArrayList<>();
 }

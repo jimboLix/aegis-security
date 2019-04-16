@@ -8,6 +8,7 @@ import com.jimbolix.shield.core.validate.ValidateCodeType;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.context.request.ServletWebRequest;
@@ -18,16 +19,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @Auther: ruihui.li
  * @Date: 2019/4/14 15:07
  * @Description:
  */
+@Component
 public class ValidateCodeFilter extends OncePerRequestFilter implements InitializingBean {
 
     private Map<String, ValidateCodeType> urlTypeMap = new HashMap<>();
@@ -46,17 +45,15 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
     public void afterPropertiesSet() throws ServletException {
         super.afterPropertiesSet();
         //图形验证码
-        List<String> urls = shieldSecurityProperties.getValidateCode().getImageCodeProperties().getUrls();
-        if(!CollectionUtils.isEmpty(urls)){
-            urls.add(SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_FORM);
-        }
+        List<String> urls = new ArrayList<>();
+        urls.add(SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_FORM);
+        urls.addAll(shieldSecurityProperties.getValidateCode().getImageCodeProperties().getUrls());
         this.addUrlToMap(urls,ValidateCodeType.IMAGE);
 
         //手机验证
-        List<String> mobileUrls = shieldSecurityProperties.getValidateCode().getSmsCodeProperties().getUrls();
-        if(!CollectionUtils.isEmpty(mobileUrls)){
-            urls.add(SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_MOBILE);
-        }
+        List<String> mobileUrls = new ArrayList<>();
+        mobileUrls.add(SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_MOBILE);
+        mobileUrls.addAll(shieldSecurityProperties.getValidateCode().getSmsCodeProperties().getUrls());
         this.addUrlToMap(mobileUrls,ValidateCodeType.SMS);
 
     }

@@ -18,7 +18,7 @@ public class ValidateCodeProcessorHolder {
     private Map<String,ValidateCodeProcessor> processorMap;
 
     public ValidateCodeProcessor findValidateCodeProcessor(ValidateCodeType type){
-        return this.findValidateCodeProcessor(type.getParamNameOnValidate());
+        return this.findValidateCodeProcessor(type.toString().toLowerCase());
     }
 
     public ValidateCodeProcessor findValidateCodeProcessor(String type){
