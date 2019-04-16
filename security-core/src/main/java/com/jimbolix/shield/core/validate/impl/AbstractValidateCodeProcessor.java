@@ -1,6 +1,10 @@
-package com.jimbolix.shield.core.validate;
+package com.jimbolix.shield.core.validate.impl;
 
 import com.jimbolix.shield.core.exception.ValiDateCodeException;
+import com.jimbolix.shield.core.validate.ValidateCode;
+import com.jimbolix.shield.core.validate.ValidateCodeGenerator;
+import com.jimbolix.shield.core.validate.ValidateCodeProcessor;
+import com.jimbolix.shield.core.validate.ValidateCodeType;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
@@ -21,7 +25,7 @@ public abstract class AbstractValidateCodeProcessor<T extends ValidateCode> impl
 
     private SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
     @Autowired
-    private Map<String,ValidateCodeGenerator> validateCodeGeneratorMap;
+    private Map<String, ValidateCodeGenerator> validateCodeGeneratorMap;
     @Override
     public void create(ServletWebRequest request) throws Exception {
         T validateCode = generate(request);

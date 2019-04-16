@@ -1,5 +1,6 @@
-package com.jimbolix.shield.core.validate;
+package com.jimbolix.shield.core.validate.impl;
 
+import com.jimbolix.shield.core.validate.ImageCode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.ServletWebRequest;
 

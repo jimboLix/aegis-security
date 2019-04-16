@@ -2,6 +2,9 @@ package com.jimbolix.shield.core.config;
 
 import com.jimbolix.shield.core.properties.ShieldSecurityProperties;
 import com.jimbolix.shield.core.validate.*;
+import com.jimbolix.shield.core.validate.impl.DefaultSmsCodeSender;
+import com.jimbolix.shield.core.validate.impl.DefaultValidateImageCodeGenerator;
+import com.jimbolix.shield.core.validate.impl.DefaultValidateSmsCodeGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;

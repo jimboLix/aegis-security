@@ -1,6 +1,8 @@
-package com.jimbolix.shield.core.validate;
+package com.jimbolix.shield.core.validate.impl;
 
 import com.jimbolix.shield.core.properties.ShieldSecurityProperties;
+import com.jimbolix.shield.core.validate.ImageCode;
+import com.jimbolix.shield.core.validate.ValidateCodeGenerator;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
