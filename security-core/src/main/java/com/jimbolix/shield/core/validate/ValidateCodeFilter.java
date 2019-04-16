@@ -7,6 +7,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -30,6 +31,8 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
 
     @Autowired
     private ShieldSecurityProperties shieldSecurityProperties;
+    @Autowired
+    private ValidateCodeProcessorHolder validateCodeProcessorHolder;
     private AntPathMatcher antPathMatcher = new AntPathMatcher();
 
     /**
@@ -57,7 +60,14 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-
+        ValidateCodeType type = this.getValidateCodeType(request);
+        //判断当前请求是否需要验证码验证
+        if(null != type){
+            //获取处理器类型
+            ValidateCodeProcessor validateCodeProcessor = validateCodeProcessorHolder.findValidateCodeProcessor(type);
+            validateCodeProcessor.valicate(new ServletWebRequest(request));
+        }
+        filterChain.doFilter(request,response);
     }
 
     private void addUrlToMap(List<String> urls, ValidateCodeType type){
