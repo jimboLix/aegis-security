@@ -9,6 +9,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+import org.springframework.social.security.SocialUser;
+import org.springframework.social.security.SocialUserDetails;
+import org.springframework.social.security.SocialUserDetailsService;
 import org.springframework.stereotype.Component;
 
 /**
@@ -17,7 +20,7 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-public class ShieldUserDetailsService implements UserDetailsService {
+public class ShieldUserDetailsService implements UserDetailsService, SocialUserDetailsService {
    @Autowired
    private PasswordEncoder passwordEncoder;
     @Override
@@ -26,5 +29,13 @@ public class ShieldUserDetailsService implements UserDetailsService {
         //todo 查询出的用户密码直接作为参数构建UserDetails的实现类，spring security会通过相应的机制来比对用户密码和页面输入的密码
         User user = new User(userName,passwordEncoder.encode("12345"), AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
         return user;
+    }
+
+    @Override
+    public SocialUserDetails loadUserByUserId(String userId) throws UsernameNotFoundException {
+        String password = passwordEncoder.encode("123456");
+        return new SocialUser(userId, password,
+                true, true, true, true,
+                AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
     }
 }

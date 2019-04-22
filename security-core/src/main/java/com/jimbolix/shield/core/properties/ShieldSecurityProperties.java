@@ -12,4 +12,6 @@ public class ShieldSecurityProperties {
 
     private ValidateCodeProperties validateCode = new ValidateCodeProperties();
 
+    private SocialConfigProperties social = new SocialConfigProperties();
+
 }

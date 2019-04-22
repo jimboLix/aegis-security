@@ -36,8 +36,8 @@ public abstract class AbstractValidateCodeProcessor<T extends ValidateCode> impl
     @Override
     public void valicate(ServletWebRequest request){
             //1.获取类型，用以确定request中验证码参数名
-        String type = getProcessorType(request);
-        if(StringUtils.isEmpty(type)){
+        ValidateCodeType type = getValidateCodeType();
+        if(type == null){
             return;
         }
         //2.获取sessionKey
@@ -91,11 +91,11 @@ public abstract class AbstractValidateCodeProcessor<T extends ValidateCode> impl
     }
 
     private String getSessionKey(ServletWebRequest request){
-        return SESSION_KEY_PREFIX+this.getProcessorType(request).toUpperCase();
+        return SESSION_KEY_PREFIX+this.getValidateCodeType().toString().toUpperCase();
     }
 
     private ValidateCodeType getValidateCodeType(){
-        String type = StringUtils.substringBefore(this.getClass().getSimpleName(), "CodeProcessor");
+        String type = StringUtils.substringBefore(this.getClass().getSimpleName(), "ValidateCodeProcessor").toUpperCase();
         return ValidateCodeType.valueOf(type);
     }
 }
